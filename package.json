@@ -1,0 +1,28 @@
+{
+  "name": "nurl",
+  "version": "1.0.0",
+  "description": "nodejs url shortener",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git:0xs2/nurl"
+  },
+  "keywords": [
+    "url",
+    "shortener"
+  ],
+  "author": "0xs",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0"
+  }
+}

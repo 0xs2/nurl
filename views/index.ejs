@@ -1,0 +1,60 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <title>surl</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>surl</h2>
+    <p>simple nodejs URL shortner</p>
+  <div class="row justify-content-center">
+
+    
+    <div class="col-md-6">
+
+        <% if (error) { %>
+            <div class="alert alert-danger mt-5" role="alert">
+                <strong>Error: </strong><%=  error %>
+            </div><% } %>
+      <form action="./generateUrl" method="POST">
+        <div class="form-group">
+          <label for="urlInput">Enter URL</label>
+          <input type="url" class="form-control" name="url" id="url" placeholder="https://example.com" required>
+          <input type="hidden" name="usingAPI" value="true">
+        </div>
+        <div class="form-group">
+          <label for="dateInput">Select Date</label>
+          <input type="date" name="date" class="form-control" min="2023-01-01" max="2036-12-31" id="dateInput">
+          <small class="form-text text-muted">Leave blank if never expires.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <% if (success) { %>
+        <div class="alert alert-success mt-5" role="alert">
+            <%=  success %>
+        </div><% } %>
+    </div>
+  </div>    
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
