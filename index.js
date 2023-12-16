@@ -72,7 +72,7 @@ app.post('/generateUrl', async (req, res) => {
     }
 
     existingData.push(newData);
-    const updatedJsonData = JSON.stringify(existingData, null, 2);
+    const updatedJsonData = JSON.stringify(existingData, null, 0);
     fs.writeFileSync(filePath, updatedJsonData);
 
     if(api) {
