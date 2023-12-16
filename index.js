@@ -8,7 +8,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const urls = require('./urls.json');
+var urls = require('./urls.json');
 
 app.set("view engine", "ejs");
 app.use((req, res, next) => {
