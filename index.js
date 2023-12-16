@@ -70,7 +70,7 @@ app.post('/generateUrl', async (req, res) => {
         "date": new Date().getTime(),
         "urlHash": gUrl,
         "ip": req.clientIp,
-        "expDate": req.body.date != '' ? Date.parse(req.body.date) : 0,
+        "expDate": req.body.date != '' || req.body.date ? Date.parse(req.body.date) ? Date.parse(req.body.date) : req.body.date : 0
     }
 
     existingData.push(newData);
