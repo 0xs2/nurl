@@ -8,7 +8,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-var urls = require('./urls.json');
+const u = 'urls.json';
 
 app.set("view engine", "ejs");
 app.use((req, res, next) => {
@@ -40,6 +40,9 @@ app.get("/", async (req,res) => {
 
 app.get("/:urlHash([a-zA-Z0-9]+)", async (req,res) => {
     const urlH = req.params.urlHash;
+    const fileContent = fs.readFileSync(u, 'utf-8');
+    let urls = JSON.parse(fileContent);
+
     const matchingObject = urls.find(obj => obj.urlHash === urlH);
 
     if(!matchingObject) {
@@ -59,8 +62,7 @@ app.post('/generateUrl', async (req, res) => {
     let existingData = [];
     let gUrl = generateRandomString(10);
 
-    const filePath = 'urls.json';
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const fileContent = fs.readFileSync(u, 'utf-8');
     existingData = JSON.parse(fileContent);
 
     const newData = {
@@ -73,7 +75,7 @@ app.post('/generateUrl', async (req, res) => {
 
     existingData.push(newData);
     const updatedJsonData = JSON.stringify(existingData, null, 0);
-    fs.writeFileSync(filePath, updatedJsonData);
+    fs.writeFileSync(u, updatedJsonData);
 
     if(api) {
         !url ? res.render('index.ejs',{error: "no URL provided :(.", success:null}) : res.render('index.ejs',{error: null, success:`URL successfully shortened, url : ${process.env.URL+'/'+gUrl}`});
